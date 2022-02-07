@@ -1,5 +1,6 @@
 import 'package:blocflutter/business_logic/cubit/characters_cubit.dart';
 import 'package:blocflutter/data/api/character_web_servies.dart';
+import 'package:blocflutter/data/model/character.dart';
 import 'package:blocflutter/data/repository/characters_repository.dart';
 import 'package:blocflutter/ui/screens/characters_details_screen.dart';
 import 'package:blocflutter/ui/screens/characters_screen.dart';
@@ -27,7 +28,8 @@ class AppRouter {
                   child: CharactersScreen(),
                 ));
       case characterDetailsScreen:
-        return MaterialPageRoute(builder: (_) => CharacterDetailsScreen());
+        final character=settings.arguments as Character;
+        return MaterialPageRoute(builder: (_) => CharacterDetailsScreen(character: character,));
     }
   }
 }

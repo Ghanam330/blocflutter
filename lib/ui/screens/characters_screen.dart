@@ -21,7 +21,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
     return TextField(
       controller: _searchTextCotroler,
       cursorColor: MyColors.myGrey,
-      decoration: InputDecoration(
+      decoration: const InputDecoration(
         hintText: 'Find a character....',
         border: InputBorder.none,
         hintStyle: TextStyle(
@@ -58,7 +58,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
             icon: const Icon(
               Icons.clear,
               color: MyColors.myGrey,
-            ))
+            )
+        )
       ];
     } else {
       return [
@@ -76,6 +77,9 @@ class _CharactersScreenState extends State<CharactersScreen> {
   void _startSearch() {
     ModalRoute.of(context)!
         .addLocalHistoryEntry(LocalHistoryEntry(onRemove: _stopSearch));
+    setState(() {
+      _isSearch = true;
+    });
   }
 
   void _stopSearch() {
