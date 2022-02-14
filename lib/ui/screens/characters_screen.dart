@@ -2,9 +2,9 @@ import 'package:blocflutter/business_logic/cubit/characters_cubit.dart';
 import 'package:blocflutter/constants/my_colores.dart';
 import 'package:blocflutter/data/model/character.dart';
 import 'package:blocflutter/ui/widgets/character_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 
 class CharactersScreen extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
           fontSize: 18,
         ),
       ),
-      style: TextStyle(
+      style: const TextStyle(
         color: MyColors.myGrey,
         fontSize: 18,
       ),
@@ -58,8 +58,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
             icon: const Icon(
               Icons.clear,
               color: MyColors.myGrey,
-            )
-        )
+            ))
       ];
     } else {
       return [
@@ -158,6 +157,30 @@ class _CharactersScreenState extends State<CharactersScreen> {
         });
   }
 
+  Widget buildNotInternetWidget() {
+    return Center(
+      child: Container(
+        color: Colors.white,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 20,
+            ),
+            const Text(
+              'Can\'t  connect .. check internet',
+              style: TextStyle(
+                fontSize: 22,
+                color: MyColors.myGrey,
+              ),
+            ),
+            Image.asset('assets/images/waring.png')
+          ],
+        ),
+      ),
+    );
+  }
+
   Widget _buildAppBarTitle() {
     return const Text(
       'Character',
@@ -177,7 +200,17 @@ class _CharactersScreenState extends State<CharactersScreen> {
               : Container(),
           title: _isSearch ? _buildSearchField() : _buildAppBarTitle(),
           actions: _buildAppBarAction()),
-      body: buidBlocWidget(),
+      body: OfflineBuilder(connectivityBuilder: (BuildContext context,
+          ConnectivityResult connectivity, Widget child) {
+        final bool connect = connectivity != ConnectivityResult.none;
+        if (connect) {
+          return buidBlocWidget();
+        } else {
+          return buildNotInternetWidget();
+        }
+      }),
+
+      //
     );
   }
 }

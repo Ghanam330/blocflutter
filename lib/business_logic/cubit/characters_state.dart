@@ -32,3 +32,20 @@ class CharacterErrorCase extends CharactersState{
   @override
   int get hashCode => message.hashCode;
 }
+
+ // new Cubit
+
+class QuoteLoading extends CharactersState {
+  final List<QuoteModel> quote;
+  QuoteLoading(this.quote);
+
+  @override
+  bool operator ==(Object o) {
+    if (identical(this, o)) return true;
+    return o is QuoteLoading && o.quote == quote;
+  }
+
+  @override
+  int get hashCode => quote.hashCode;
+
+}
