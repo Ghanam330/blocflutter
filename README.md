@@ -24,9 +24,6 @@
 
 ![fdfsf](https://user-images.githubusercontent.com/38296077/126984994-64da4f86-ea59-4df7-98dc-14df0822ae41.jpeg)
 
-- Some Slivers also.
-
-![dsad](https://user-images.githubusercontent.com/38296077/126985335-dea9eaa5-0c2d-4edd-89ac-466dc1c33f93.jpeg)
 
 
 
