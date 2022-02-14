@@ -159,6 +159,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   Widget buildNotInternetWidget() {
     return Center(
+
       child: Container(
         color: Colors.white,
         child: Column(
